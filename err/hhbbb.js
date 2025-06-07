@@ -1,6 +1,6 @@
 /**
- * github : https://github.com/kiuur
- * youtube : https://youtube.com/@kyuurzy
+ * github : https:
+ * youtube : https:
 */
 
 require('../settings/config');
@@ -18,8 +18,12 @@ const confessHistory = [];
 const rateLimit = {}; 
 const emojis = ['💌', '❤️', '✨', '💭', '❣️', '🧡', '💬'];
 
+
+function savePremium() {
+  fs.writeFileSync(dbPremPath, JSON.stringify(global.premiumUser, null, 2));
+}
 function generateID() {
-    return Math.floor(1000 + Math.random() * 9000); // random 4 digit
+    return Math.floor(1000 + Math.random() * 9000); 
 }
 const { SnackVideo } = require('../start/lib/function/snackvideo')
 const {
@@ -34,8 +38,6 @@ const {
     getContentType, 
    } = require("@whiskeysockets/baileys");
 global.banList = global.banList || {};
-const { addXP, getUserXP } = require('./lib/leveling');
-        const { generateXPCard } = require('./lib/xpimage');
 module.exports = client = async (client, m, chatUpdate, store) => {
     try {
         const body = (
@@ -54,9 +56,13 @@ module.exports = client = async (client, m, chatUpdate, store) => {
 : m.key.participant || m.key.remoteJid;
         
         const senderNumber = sender.split('@')[0];
-        const botNumber = await client.decodeJid(client.user.id);
+const botNumber = await client.decodeJid(client.user.id);
         const budy = (typeof m.text === 'string' ? m.text : '');
-        // ANTI CALL START
+        
+        
+global.nsfwMode = global.nsfwMode || {};
+global.antilink = global.antilink || {};
+global.antigroup = global.antigroup || {};
 global.callWarnDB = global.callWarnDB || {};
 
 if (m.message?.protocolMessage?.type === 2) {
@@ -81,36 +87,14 @@ if (m.message?.protocolMessage?.type === 2) {
         delete global.callWarnDB[callerId];
     }
 }
-// ANTI CALL END
 
-if (m.sender) { // kalau mau di group juga, hapus !m.isGroup
 
-  const { leveledUp, user } = addXP(m.sender, Math.floor(Math.random() * 10) + 5, botNumber);
-
-  if (leveledUp) {
-    const maxXp = user.level * 100;
-    // Ambil profile picture user
-let pp;
-try {
-  pp = await client.profilePictureUrl(sender, 'image');
-} catch {
-  pp = null; // Kalau error, biarin kosong
-}
-const profilePicBuffer = pp ? await (await fetch(pp)).buffer() : null;
-
-const xpCard = await generateXPCard(m.pushName || senderNumber, user.level, user.xp, maxXp, profilePicBuffer);
-
-    await client.sendMessage(m.chat, {
-      image: xpCard,
-      caption: `🎉 Selamat ${m.pushName || "kamu"} naik ke Level ${user.level}!`
-    }, { quoted: m });
-  }
-}
+if (m.sender) { 
 if (global.banList?.[m.sender]) {
   let dataBan = global.banList[m.sender];
 
   if (Date.now() < dataBan.until) {
-    // Kirim pesan ke user (jika belum dikirim sebelumnya)
+    
     if (!dataBan.notified) {
       client.sendMessage(m.sender, {
         text: `> Anda telah dibanned oleh bot.
@@ -120,12 +104,12 @@ if (global.banList?.[m.sender]) {
         headerType: 1
       });
 
-      global.banList[m.sender].notified = true; // tandai agar tidak spam
+      global.banList[m.sender].notified = true; 
     }
 
-    return; // blok akses command
+    return; 
   } else {
-    delete global.banList[m.sender]; // hapus jika ban sudah lewat
+    delete global.banList[m.sender]; 
   }
 }
         const prefa = ["", "!", ".", ",", "🐤", "🗿"];
@@ -150,6 +134,9 @@ const Access = [botNumber, ...kontributor, ...ownerList]
         const quoted = m.quoted ? m.quoted : m;
         const mime = (quoted.msg || quoted).mimetype || '';
         const qmsg = (quoted.msg || quoted);
+        const dbPremPath = './database/premium.json';
+if (!fs.existsSync(dbPremPath)) fs.writeFileSync(dbPremPath, '[]');
+global.premiumUser = JSON.parse(fs.readFileSync(dbPremPath));
         const isMedia = /image|video|sticker|audio/.test(mime);
 
         const groupMetadata = isGroup ? await client.groupMetadata(m.chat).catch((e) => {}) : "";
@@ -303,6 +290,22 @@ if (global.antilink && global.antilink[m.chat]) {
         }
     }
 }
+
+
+if (m.isGroup && global.antigroup[m.chat]) {
+  let regex = /chat\.whatsapp\.com\/[A-Za-z0-9]{20,24}/i;
+  if (regex.test(m.text)) {
+    if (isGroupAdmins || m.key.fromMe) return; 
+
+    reply(`⚠️ Link grup terdeteksi!\nPengguna: @${m.sender.split('@')[0]}`, [m.sender]);
+
+    
+    if (isBotGroupAdmins) {
+      await client.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
+    }
+  }
+}
+
         switch (command) {
             
             case "allmenu": {
@@ -354,10 +357,13 @@ if (global.antilink && global.antilink[m.chat]) {
 ┃ • ${prefix}jadibot  
 ┃ • ${prefix}listjadibot  
 ┃ • ${prefix}stopjadibot  
-┃ • ${prefix}aiclaude  
+┃ • ${prefix}aiclaude
 ┗━━━━━━━━━━━┛  
 
 ┏━【 Fun Menu 】━┓  
+┃ • ${prefix}roast  
+┃ • ${prefix}roastme  
+┃ • ${prefix}darkroast
 ┃ • ${prefix}sticker  
 ┃ • ${prefix}brat  
 ┃ • ${prefix}manhwa
@@ -368,8 +374,12 @@ if (global.antilink && global.antilink[m.chat]) {
 ┃ • ${prefix}glitchtext  
 ┃ • ${prefix}findsong  
 ┃ • ${prefix}sspotify    
+┃ • ${prefix}puji  
+┃ • ${prefix}kenapaya  
+┃ • ${prefix}curhat
 ┃ • ${prefix}meme  
 ┃ • ${prefix}ramalan  
+┃ • ${prefix}chess
 ┃ • ${prefix}luckynumber  
 ┃ • ${prefix}time  
 ┃ • ${prefix}upch  
@@ -409,10 +419,10 @@ if (global.antilink && global.antilink[m.chat]) {
 ┃ • ${prefix}poke
 ┃ • ${prefix}dance 
 ┃ • ${prefix}cringe
-┃ • ${prefix}waifus
-┃ • ${prefix}nekos
-┃ • ${prefix}trap
-┃ • ${prefix}blowjob
+┃ • ${prefix}waifus 18+
+┃ • ${prefix}nekos 18+
+┃ • ${prefix}trap 18+
+┃ • ${prefix}blowjob 18+
 ┗━━━━━━━━━━┛  
 
 ┏━━━【 Owner 】━━━┓  
@@ -422,13 +432,19 @@ if (global.antilink && global.antilink[m.chat]) {
 ┃ • ${prefix}done
 ┃ • ${prefix}getvo  
 ┃ • ${prefix}csesi  
-┃ • ${prefix}addcase  
+┃ • ${prefix}addcase
+┃ • ${prefix}getcase
+┃ • ${prefix}editcase
+┃ • ${prefix}delcase  
 ┃ • ${prefix}public  
 ┃ • ${prefix}self  
 ┃ • ${prefix}join
 ┃ • ${prefix}leave
 ┃ • ${prefix}rent  
 ┃ • ${prefix}antilink (group)
+┃ • ${prefix}eval
+┃ • ${prefix}log
+┃ • ${prefix}del
 ┃ • >  
 ┃ • <  
 ┃ • $  
@@ -454,8 +470,8 @@ if (global.antilink && global.antilink[m.chat]) {
             externalAdReply: {  
                 title: "Munchy", 
                 body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
-                thumbnailUrl: `https://unitedcamps.in/Images/IMG_1744220705.jpg`,
-                sourceUrl: "https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t", 
+                thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",
+                        sourceUrl: 'https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t',
                 mediaType: 1,
                 renderLargerThumbnail: true
             }
@@ -508,9 +524,8 @@ case "menudownload": {
             externalAdReply: {  
                 title: "Munchy", 
                 body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
-                thumbnailUrl: `https://unitedcamps.in/Images/IMG_1744220705.jpg`,
-                sourceUrl: "https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t", 
-                mediaType: 1,
+                thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",                         
+                sourceUrl: 'https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t',
                 renderLargerThumbnail: true
             }
         }
@@ -559,30 +574,14 @@ case "menugroup": {
             externalAdReply: {  
                 title: "Munchy", 
                 body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
-                thumbnailUrl: `https://unitedcamps.in/Images/IMG_1744220705.jpg`,
-                sourceUrl: "https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t", 
+                thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",                         
+                sourceUrl: 'https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t',
                 mediaType: 1,
                 renderLargerThumbnail: true
             }
         }
     }, { quoted: m });
 };
-break;
-case 'antilink': {
-    if (!isGroup) return reply(mess.group);
-    if (!isAdmins && !Access) return reply(mess.admin);
-
-    if (args[0] === 'on') {
-        if (!global.antilink) global.antilink = {};
-        global.antilink[m.chat] = true;
-        reply('✅ Antilink activated in this group.');
-    } else if (args[0] === 'off') {
-        if (global.antilink) delete global.antilink[m.chat];
-        reply('❌ Antilink deactivated in this group.');
-    } else {
-        reply('Format:\n.antilink on\n.antilink off');
-    }
-}
 break;
 case "menuvoice": {
     const totalMem = os.totalmem();
@@ -635,8 +634,8 @@ case "menuvoice": {
             externalAdReply: {  
                 title: "Munchy", 
                 body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
-                thumbnailUrl: `https://unitedcamps.in/Images/IMG_1744220705.jpg`,
-                sourceUrl: "https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t", 
+                thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",                         
+                sourceUrl: 'https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t',
                 mediaType: 1,
                 renderLargerThumbnail: true
             }
@@ -686,8 +685,8 @@ case "menubeta": {
             externalAdReply: {  
                 title: "Munchy", 
                 body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
-                thumbnailUrl: `https://unitedcamps.in/Images/IMG_1744220705.jpg`,
-                sourceUrl: "https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t", 
+                thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",                         
+                sourceUrl: 'https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t',
                 mediaType: 1,
                 renderLargerThumbnail: true
             }
@@ -703,7 +702,7 @@ case "menufun": {
     const formattedTotalMem = formatSize(totalMem);
     
     let mbut = `
-╔═《 *JUNE-MD* 》═╗  
+╔═《 JUNE-MD* 》═╗  
 ║ ɴᴀᴍᴇ   : ${pushname}  
 ║ ʙᴏᴛ    : ${global.namaBot}  
 ║ ᴍᴏᴅᴇ   : ${client.public ? 'Public' : 'Self'}  
@@ -712,6 +711,9 @@ case "menufun": {
 ╚════════════╝  
   
 ┏━【 Fun Menu 】━┓  
+┃ • ${prefix}roast  
+┃ • ${prefix}roastme  
+┃ • ${prefix}darkroast
 ┃ • ${prefix}sticker  
 ┃ • ${prefix}brat  
 ┃ • ${prefix}manhwa
@@ -722,8 +724,12 @@ case "menufun": {
 ┃ • ${prefix}glitchtext  
 ┃ • ${prefix}findsong  
 ┃ • ${prefix}sspotify    
+┃ • ${prefix}puji  
+┃ • ${prefix}kenapaya  
+┃ • ${prefix}curhat
 ┃ • ${prefix}meme  
 ┃ • ${prefix}ramalan  
+┃ • ${prefix}chess
 ┃ • ${prefix}luckynumber  
 ┃ • ${prefix}time  
 ┃ • ${prefix}upch  
@@ -750,8 +756,8 @@ case "menufun": {
             externalAdReply: {  
                 title: "Munchy", 
                 body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
-                thumbnailUrl: `https://unitedcamps.in/Images/IMG_1744220705.jpg`,
-                sourceUrl: "https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t", 
+                thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",                         
+                sourceUrl: 'https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t',
                 mediaType: 1,
                 renderLargerThumbnail: true
             }
@@ -807,10 +813,10 @@ case "menuanime": {
 ┃ • ${prefix}poke
 ┃ • ${prefix}dance 
 ┃ • ${prefix}cringe
-┃ • ${prefix}waifus
-┃ • ${prefix}nekos
-┃ • ${prefix}trap
-┃ • ${prefix}blowjob
+┃ • ${prefix}waifus 18+
+┃ • ${prefix}nekos 18+
+┃ • ${prefix}trap 18+
+┃ • ${prefix}blowjob 18+
 ┗━━━━━━━━━━┛  
    `;
 
@@ -832,8 +838,8 @@ case "menuanime": {
             externalAdReply: {  
                 title: "Munchy", 
                 body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
-                thumbnailUrl: `https://unitedcamps.in/Images/IMG_1744220705.jpg`,
-                sourceUrl: "https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t", 
+                thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",                         
+                sourceUrl: 'https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t',
                 mediaType: 1,
                 renderLargerThumbnail: true
             }
@@ -842,73 +848,80 @@ case "menuanime": {
 };
 break;
 case "menuowner": {
-    const totalMem = os.totalmem();
-    const freeMem = os.freemem();
-    const usedMem = totalMem - freeMem;
-    const formattedUsedMem = formatSize(usedMem);
-    const formattedTotalMem = formatSize(totalMem);
-    
-    let mbut = `
-╔═《 *JUNE-MD* 》═╗  
-║ ɴᴀᴍᴇ   : ${pushname}  
-║ ʙᴏᴛ    : ${global.namaBot}  
-║ ᴍᴏᴅᴇ   : ${client.public ? 'Public' : 'Self'}  
-║ ᴜsᴇʀ   : @${m.sender.split('@')[0]}  
-║ ʀᴀᴍ    : ${formattedUsedMem} / ${formattedTotalMem}  
-╚════════════╝    
+ const totalMem = os.totalmem();
+ const freeMem = os.freemem();
+ const usedMem = totalMem - freeMem;
+ const formattedUsedMem = formatSize(usedMem);
+ const formattedTotalMem = formatSize(totalMem);
+ 
+ let mbut = `
+╔═《 *JUNE-MD* 》═╗ 
+║ ɴᴀᴍᴇ : ${pushname} 
+║ ʙᴏᴛ : ${global.namaBot} 
+║ ᴍᴏᴅᴇ : ${client.public ? 'Public' : 'Self'} 
+║ ᴜsᴇʀ : @${m.sender.split('@')[0]} 
+║ ʀᴀᴍ : ${formattedUsedMem} / ${formattedTotalMem} 
+╚════════════╝ 
 
-┏━━━【 Owner 】━━━┓  
-┃ • ${prefix}cekidgc  
-┃ • ${prefix}pushkontak  
-┃ • ${prefix}pushkontakid  
-┃ • ${prefix}done  
+┏━━━【 Owner 】━━━┓ 
+┃ • ${prefix}cekidgc 
+┃ • ${prefix}pushkontak 
+┃ • ${prefix}pushkontakid 
+┃ • ${prefix}done 
 ┃ • ${prefix}getvo
-┃ • ${prefix}csesi  
-┃ • ${prefix}addcase  
-┃ • ${prefix}public  
-┃ • ${prefix}self  
+┃ • ${prefix}csesi 
+┃ • ${prefix}addcase
+┃ • ${prefix}getcase
+┃ • ${prefix}editcase
+┃ • ${prefix}delcase
+┃ • ${prefix}public 
+┃ • ${prefix}self 
 ┃ • ${prefix}join
 ┃ • ${prefix}leave
-┃ • ${prefix}rent  
+┃ • ${prefix}rent 
 ┃ • ${prefix}antilink (group)
-┃ • >  
-┃ • <  
-┃ • $  
+┃ • ${prefix}eval
+┃ • ${prefix}log
+┃ • ${prefix}del
+┃ • > 
+┃ • < 
+┃ • $ 
 ┗━━━━━━━━━━━━┛
-   `;
+ `;
 
-    client.sendMessage(m.chat, {
-        document: fs.readFileSync("./package.json"),
-        fileName: "Lets kill it!!! - Munchy",
-        mimetype: "application/pdf",
-        fileLength: 999999999999,
-        pageCount: 999,
-        caption: mbut,
-        contextInfo: {
-            forwardingScore: 999,
-            isForwarded: true,
-            mentionedJid: [sender],
-            forwardedNewsletterMessageInfo: {
-                newsletterName: "Munchy࿐ ",
-                newsletterJid: `120363349621603815@newsletter`,
-            },
-            externalAdReply: {  
-                title: "Munchy", 
-                body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
-                thumbnailUrl: `https://unitedcamps.in/Images/IMG_1744220705.jpg`,
-                sourceUrl: "https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t", 
-                mediaType: 1,
-                renderLargerThumbnail: true
-            }
-        }
-    }, { quoted: m });
+ client.sendMessage(m.chat, {
+ document: fs.readFileSync("./package.json"),
+ fileName: "Lets kill it!!! - Munchy",
+ mimetype: "application/pdf",
+ fileLength: 999999999999,
+ pageCount: 999,
+ caption: mbut,
+ contextInfo: {
+ forwardingScore: 999,
+ isForwarded: true,
+ mentionedJid: [sender],
+ forwardedNewsletterMessageInfo: {
+ newsletterName: "Munchy࿐ ",
+ newsletterJid: `120363349621603815@newsletter`,
+ },
+ externalAdReply: { 
+ title: "Munchy", 
+ body: "Munchy is your friendly WhatsApp bot — always ready to help, reply, and keep the chat going!",
+ thumbnailUrl: `https:
+ sourceUrl: "https:
+ mediaType: 1,
+ renderLargerThumbnail: true
+ }
+ }
+ }, { quoted: m });
 };
+break
 break;
 case 'start': {
-  // Kirim pesan dokumen dengan tombol biasa
+  
   await reaction(m.chat, '✅')
   await client.sendMessage(m.chat, {
-    document: { url: 'https://unitedcamps.in/Images/IMG_1744220705.jpg' },
+    document: { url: 'https:
     mimetype: "application/msword",
     fileName: "Munchy - 1.0",
     fileLength: "999999999999",
@@ -928,8 +941,8 @@ Munchy adalah bot WhatsApp multifungsi yang masih dalam tahap beta development.
       externalAdReply: {
         title: "Munchy - 1.0",
         body: 'Beta',
-        thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",
-        sourceUrl: `https://youtube.com/@baazteardvont?si=9b-yuiV-CK_H9K3t`,
+        thumbnailUrl: "https:
+        sourceUrl: `https:
         mediaType: 1,
         renderLargerThumbnail: true
       }
@@ -937,9 +950,10 @@ Munchy adalah bot WhatsApp multifungsi yang masih dalam tahap beta development.
     buttons: [
       { buttonId: `.jadibot`, buttonText: { displayText: `Jadibot 🖥️` }, type: 1 },
       { buttonId: `.owner`, buttonText: { displayText: `Owner 🦅` }, type: 1 },
+      { buttonId: `.statusbot`, buttonText: { displayText: `Status Bot⚙` }, type: 1 },
       {
         buttonId: 'flow_button',
-        buttonText: { displayText: 'List Menu 🔽' },
+        buttonText: { displayText: 'Munchy - 1.0' },
         type: 4,
         nativeFlowInfo: {
           name: 'single_select',
@@ -1035,7 +1049,7 @@ Munchy adalah bot WhatsApp multifungsi yang masih dalam tahap beta development.
     viewOnce: true
   }, { quoted: m });
 
-  // Kirim stiker animasi (jika ada)
+  
   const stickerPath = '/storage/emulated/0/Munch/menu.webp';
   if (fs.existsSync(stickerPath)) {
     const buffer = fs.readFileSync(stickerPath);
@@ -1066,16 +1080,16 @@ case 'owner': {
                 "containsAutoReply": true,
                 "mediaType": 1, 
                 "jpegThumbnail": fs.readFileSync("./fixx.jpg"),
-                "mediaUrl": "https://unitedcamps.in/Images/IMG_1744220705.jpg",
-                "sourceUrl": "https://whatsapp.com/channel/0029ValLxIw9xVJewuwoqB1G"
+                "thumbnailUrl": "https:
+                "sourceUrl": "https:
             }
         }
     }, { quoted: m }); 
 }
 break;
-/// main
+
 case "cosplay": {
-  const anu = `https://archive-ui.tanakadomp.biz.id/asupan/cosplay`;
+  const anu = `https:
   const response = await axios.get(anu, { responseType: 'arraybuffer' })
   try {
     client.sendMessage(m.chat, {
@@ -1223,13 +1237,13 @@ case 'ban': {
     until: hingga,
     reason: alasan.trim(),
     by: m.sender,
-    notified: true // tandai sudah diberi tahu
+    notified: true 
   };
 
   reply(`@${target.split("@")[0]} telah dibanned selama ${jumlah}${satuan}`, { mentions: [target] });
 
   await client.sendMessage(target, {
-  document: { url: 'https://unitedcamps.in/Images/IMG_1744220705.jpg' },
+  document: { url: 'https:
   mimetype: "application/msword",
   fileName: "Banned Notification",
   fileLength: "999999999999",
@@ -1241,8 +1255,8 @@ case 'ban': {
     externalAdReply: {
       title: "Anda Terbanned",
       body: "Chat Owner untuk unban",
-      thumbnailUrl: "https://unitedcamps.in/Images/IMG_1744220691.jpg",
-      sourceUrl: `https://wa.me/${m.sender.split("@")[0]}`,
+      thumbnailUrl: "https:
+      sourceUrl: `https:
       mediaType: 1,
       renderLargerThumbnail: true
     }
@@ -1317,6 +1331,592 @@ case "glitchtext": {
  m.reply(`🌌 *Glitch Text:* \n\n${glitch}`);
 };
 break;
+
+case 'getcase' : {
+if (!isCreator) return reply("Khusus owner bre!");
+ if (!text) return reply("Format:\n.getcase waifus");
+
+ const fs = require('fs');
+ const filePath = './start/system.js';
+ const isi = fs.readFileSync(filePath, 'utf8');
+
+ const regex = new RegExp(`case ['"\`]${text}['"\`]\\s*:\\s*{([\\s\\S]*?)break`, 'i');
+ const match = isi.match(regex);
+
+ if (!match) return reply("Case tidak ditemukan.");
+
+ let output = match[1].trim(); 
+
+ if (output.length > 4000) output = output.slice(0, 4000) + '\n... (terpotong)';
+
+ reply(output); 
+}
+break
+
+case 'editcase': {
+  if (!isCreator) return reply("Khusus owner bre!");
+  if (!text.includes('|')) return reply("Format:\n.editcase command|kode_baru");
+
+  const [target, newCode] = text.split('|');
+  const fs = require('fs');
+  const filePath = './start/system.js';
+  const isi = fs.readFileSync(filePath, 'utf8');
+
+  const regex = new RegExp(`\\s*case ['"\`]${target}['"\`]\\s*:\\s*{[\\s\\S]*?break`, 'i');
+  if (!regex.test(isi)) return reply("Case tidak ditemukan.");
+
+  
+  const kodeBaru = `\ncase '${target}' : {\n${newCode.trim()}\nbreak`;
+
+  const hasil = isi.replace(regex, kodeBaru);
+  fs.writeFileSync(filePath, hasil, 'utf8');
+
+  reply(`✅ Case "${target}" berhasil diedit.`);
+}
+break;
+
+case 'delcase': {
+ if (!isCreator) return reply("Khusus owner bre!");
+ if (!text) return reply("Format:\n.delcase waifus");
+
+ const fs = require('fs');
+ const filePath = './start/system.js';
+ const isi = fs.readFileSync(filePath, 'utf8');
+
+ const regex = new RegExp(`\\s*case ['"\`]${text}['"\`]\\s*:\\s*{[\\s\\S]*?break`, 'i');
+ if (!regex.test(isi)) return reply("Case tidak ditemukan.");
+
+ const hasil = isi.replace(regex, '');
+ fs.writeFileSync(filePath, hasil, 'utf8');
+ reply(`🗑️ Case "${text}" berhasil dihapus.`);
+}
+break;
+
+case 'log': {
+ if (!isCreator) return reply("Khusus owner!");
+ try {
+ const val = eval(text);
+ reply("```js\n" + require('util').inspect(val) + "\n```");
+ } catch (e) {
+ reply("Gagal ngelog:\n" + e);
+ }
+}
+break;
+
+case 'eval': {
+ if (!isCreator) return reply("Khusus owner!");
+ if (!text) return reply("Kirim kode JS untuk dijalankan.");
+
+ try {
+ let result = await eval(`(async () => { ${text} })()`);
+ if (typeof result !== 'string') result = require('util').inspect(result);
+ reply("```js\n" + result + "\n```");
+ } catch (err) {
+ reply("❌ Error:\n" + err);
+ }
+}
+break;
+case 'catatan' : {
+if (!isCreator) return reply("Khusus owner bre!");
+ if (!text) return reply("Ketik sesuatu dong bre, contoh:\n.catatan fix leveling bot");
+
+ const fs = require('fs');
+ const folderPath = './database';
+ const filePath = folderPath + '/catatan.txt';
+
+ 
+ if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath);
+
+ 
+ if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, '');
+
+ fs.appendFileSync(filePath, `• ${text}\n`);
+ reply("✅ Catatan disimpan.");
+}
+break;
+
+case 'cekcatatan': {
+ if (!isCreator) return reply("Khusus owner bre!");
+ const fs = require('fs');
+ const filePath = './database/catatan.txt';
+
+ if (!fs.existsSync(filePath)) return reply("Belum ada catatan.");
+
+ const data = fs.readFileSync(filePath, 'utf8');
+ reply(`🗒️ Catatan:\n\n${data}`);
+}
+break;
+
+case 'hapuscatatan': {
+ if (!isCreator) return reply("Khusus owner bre!");
+ const fs = require('fs');
+ const filePath = './database/catatan.txt';
+
+ if (!fs.existsSync(filePath)) return reply("Catatan sudah kosong.");
+
+ fs.writeFileSync(filePath, '');
+ reply("🗑️ Semua catatan berhasil dihapus.");
+}
+break;
+
+case 'chess': {
+ if (!args[0]) return reply("Masukkan username Chess.com");
+ let user = args[0].toLowerCase();
+
+ try {
+ const res = await fetch(`https:
+ if (!res.ok) return reply("User tidak ditemukan.");
+ const data = await res.json();
+
+ let teks = `♟️ *Profil Chess.com*
+▢ Username : ${data.username}
+▢ Nama Lengkap : ${data.name || "N/A"}
+▢ Judul : ${data.title || "None"}
+▢ Negara : ${data.country.split('/').pop()}
+▢ Status : ${data.status}
+▢ Followers : ${data.followers}
+▢ Akun Dibuat : ${moment(data.joined * 1000).format('LL')}`;
+
+ reply(teks);
+ } catch (e) {
+ console.error(e);
+ reply("Gagal mengambil data.");
+ }
+}
+break;
+
+case 'avatar': {
+    if (!args[0]) return reply("Masukkan nama/avatar ID!\nContoh: .avatar Munchy bottts");
+
+    let seed = encodeURIComponent(args[0]);
+    let style = args[1] ? args[1].toLowerCase() : 'bottts';
+
+    const validStyles = [
+        "adventurer", "adventurer-neutral", "avataaars", "big-ears", "big-ears-neutral",
+        "big-smile", "bottts", "croodles", "croodles-neutral", "identicon", 
+        "initials", "lorelei", "micah", "miniavs", "notionists", 
+        "open-peeps", "personas", "pixel-art", "pixel-art-neutral", "rings", 
+        "shapes", "thumbs"
+    ];
+
+    if (!validStyles.includes(style)) {
+        return reply(`❌ Style tidak dikenali.\nGunakan salah satu:\n${validStyles.join(', ')}`);
+    }
+
+    let url = `https:
+
+    await client.sendMessage(m.chat, {
+        image: { url },
+        caption: `🎨 Avatar untuk: *${args[0]}*\nGaya: *${style}*`
+    }, { quoted: m });
+}
+break;
+
+case 'vote': {
+ if (!isGroup) return reply('Fitur hanya untuk grup!');
+ if (!text.includes('|')) return reply('Format: .vote [pertanyaan]|[opsi1,opsi2,...]');
+
+ let [question, optionString] = text.split('|');
+ let options = optionString.split(',').map(v => v.trim()).filter(Boolean);
+
+ if (options.length < 2) return reply('Minimal 2 opsi, maksimal 12.');
+ if (options.length > 12) return reply('Maksimal 12 opsi sesuai batasan WA.');
+
+ await client.sendMessage(m.chat, {
+ poll: {
+ name: question.trim(),
+ values: options
+ }
+ });
+}
+break;
+
+
+
+case 'roast': {
+  if (!m.mentionedJid[0]) return reply('Tag orangnya dulu, bre!\nContoh: .roast @user');
+  let target = m.mentionedJid[0];
+  const roast = [
+  "Lo tuh bukan jelek, lo tuh kayak hasil sketch yang gak jadi.",
+  "IQ lo kayak sinyal di gunung, kadang muncul tapi gak bisa dipake.",
+  "Kalo lo jadi karakter game, pasti NPC yang diem doang.",
+  "Bakat lo banyak... tapi gak ada yang berguna.",
+  "Setiap lo ngomong, IQ gue ikut drop 3 poin.",
+  "Lo tuh kayak meme tahun 2012... gak lucu tapi maksa muncul.",
+  "Lo diem aja, itu udah kontribusi terbaik lo.",
+  "Lo tuh bukan toxic, lo tuh spoiler hidup orang.",
+  "Lo sekolah gak? Kok masih gagal jadi orang?",
+  "Lo tuh kayak error 404... hilang arah dan fungsi."
+];
+  let hasil = roast[Math.floor(Math.random() * roast.length)];
+  reply(`@${target.split('@')[0]}\n"${hasil}"`, [target]);
+}
+break;
+
+
+case 'roastme': {
+  const selfRoast = [
+    "Gue sadar kok, gue main bot doang padahal tugas belum kelar.",
+    "Dikira edgy, padahal cuma ngambek.",
+    "Bakat gue tuh banyak... tapi semua gak berguna.",
+    "Gue tuh kayak sinyal, kadang ada kadang gak dipake.",
+    "Ngoding-ngoding, hasilnya error juga.",
+    "Bilangnya kuat, padahal login ke Minecraft aja pakai akun temen.",
+    "Gue jago diem di tempat dan gak berkembang.",
+    "Dibilang keren, tapi sama kaca pun malu ngaca.",
+    "Kadang gue mikir... dan langsung nyerah.",
+    "Gue tuh bukti bahwa evolusi bisa gagal."
+  ];
+  let hasil = selfRoast[Math.floor(Math.random() * selfRoast.length)];
+  reply(`🪞 "${hasil}"`);
+}
+break;
+
+
+case 'darkroast': {
+  if (!m.mentionedJid[0]) return reply('Tag korbannya bre.\nContoh: .darkroast @user');
+  let target = m.mentionedJid[0];
+  const dark = [
+    "Muka lo kayak loading screen... bikin nunggu tapi gak penting.",
+    "Orang tuamu ngasih lo ke dunia, dunia ngasih lo ke kita... dan kita nyesel.",
+    "Lo tuh plot twist dari hidup orang lain, dan itu plotnya tragedi.",
+    "Lo gak toxic, lo radioaktif.",
+    "Lo tuh alasan kenapa tombol block diciptakan.",
+    "Lo bukan beban keluarga... lo paket lengkap dengan cicilan.",
+    "Senyum lo bisa nyembuhin stress, karena orang bakal langsung nyadar: hidup mereka gak separah itu.",
+    "Lo tuh kayak notifikasi spam: muncul mulu, tapi gak ada yang mau buka.",
+    "Tiap lo ngetik, kamus Oxford minta pensiun.",
+    "Bahkan error 404 lebih berguna dari lo."
+  ];
+  let hasil = dark[Math.floor(Math.random() * dark.length)];
+  reply(`@${target.split('@')[0]}\n"${hasil}"`, [target]);
+}
+break;
+
+case 'puji': {
+ if (!m.mentionedJid[0]) return reply('Tag dulu bre.\nContoh: .puji @user');
+ let target = m.mentionedJid[0];
+ const pujian = [
+  "Kamu tuh kayak WiFi gratis... dicari semua orang, walau kadang lemot.",
+  "Senyum kamu bisa bikin orang lupa utang.",
+  "Kamu itu kayak jam istirahat... dinanti semua orang.",
+  "Kalo kamu jadi aplikasi, pasti versi premium tanpa iklan.",
+  "Kamu tuh kayak es teh siang bolong, bikin adem walau lagi panas.",
+  "Kamu gak perfect, tapi kehadiranmu kayak checklist yang paling penting.",
+  "Kalo semua orang kayak kamu, dunia gak butuh filter lagi.",
+  "Ngeliat kamu tuh kayak nemu charger pas baterai 1%.",
+  "Kamu kayak playlist favorit... susah buat di-skip.",
+  "Gak semua bintang ada di langit, beberapa nongol di chat kayak kamu."
+];
+ let hasil = pujian[Math.floor(Math.random() * pujian.length)];
+ reply(`@${target.split('@')[0]}\n${hasil}`, [target]);
+}
+break;
+case 'curhat': {
+  if (!text) return reply('Tulis curhatnya dong bre.\nContoh: .curhat Aku capek ditinggalin mulu.');
+
+  global.listCurhat = global.listCurhat || [];
+
+  global.listCurhat.push({
+    user: m.sender,
+    time: new Date().toLocaleString('id'),
+    text: text
+  });
+
+  reply(`🗒️ Curhatan kamu udah tersimpan dengan aman.\nTetap semangat ya!`);
+}
+break;
+case 'bacacurhat': {
+  if (!global.listCurhat || global.listCurhat.length === 0) return reply('Belum ada curhatan yang masuk.');
+
+  let teks = `📩 *Daftar Curhatan:*\n\n`;
+  global.listCurhat.forEach((c, i) => {
+    teks += `${i + 1}. @${c.user.split('@')[0]} - ${c.time}\n${c.text}\n\n`;
+  });
+
+  reply(teks.trim(), global.listCurhat.map(c => c.user));
+}
+break;
+case 'kenapaya': {
+ const alasan = [
+  "Karena notifikasi kamu disangka tag dari bot lain.",
+  "Karena dia pikir kamu ngechat cuma buat pinjam diamond.",
+  "Karena kamu ngetik 'hai', dia kira kamu typo dari 'halo dunia'.",
+  "Karena lo terlalu real buat dia yang hidup di filter.",
+  "Karena dia sibuk... mikirin orang lain.",
+  "Karena lo muncul cuma pas butuh, bukan pas butuh lo.",
+  "Karena kamu ngetik jam 3 pagi, dikira horor.",
+  "Karena dia pikir kamu udah move on. Kamu belum, dia udah.",
+  "Karena kamu dianggep temen... yang gampang diabaikan.",
+  "Karena vibes kamu kayak iklan skip 5 detik."
+];
+ let pick = alasan[Math.floor(Math.random() * alasan.length)];
+ reply(`Kenapa kamu gak dibalas?\n${pick}`);
+}
+break;
+
+
+case 'del': {
+ if (!m.quoted) return reply('Balas pesan yang mau dihapus, bre.');
+ if (isGroup && !isBotGroupAdmins) return reply('Bot bukan admin, gak bisa hapus pesan.');
+ if (isGroup && !isGroupAdmins && !Access) return reply('Lu bukan admin bre, gak bisa nyuruh bot hapus-hapus.');
+
+ try {
+ await client.sendMessage(m.chat, {
+ delete: {
+ remoteJid: m.chat,
+ fromMe: false,
+ id: m.quoted.id,
+ participant: m.quoted.sender
+ }
+ });
+ } catch (e) {
+ console.log(e);
+ reply('❌ Gagal menghapus pesan. Pastikan pesan masih bisa dihapus.');
+ }
+}
+break;
+
+case 'statusbot': {
+ const os = require('os');
+ const used = process.memoryUsage();
+ const format = (x) => (x / 1024 / 1024).toFixed(2) + ' MB';
+
+ const uptimeSec = process.uptime();
+ const h = Math.floor(uptimeSec / 3600);
+ const m = Math.floor((uptimeSec % 3600) / 60);
+ const s = Math.floor(uptimeSec % 60);
+
+ const platform = os.platform();
+ const arch = os.arch();
+
+ const ramUsed = format(used.heapUsed);
+ const ramTotal = format(os.totalmem());
+
+ const old = Date.now();
+ const ping = Date.now() - old;
+
+ let teks = `📊 *Status Bot Munchy*\n\n` +
+ `⏱️ Uptime: ${h} jam ${m} menit ${s} detik\n` +
+ `🧠 RAM: ${ramUsed} / ${ramTotal}\n` +
+ `⚙️ Platform: ${platform} ${arch}\n` +
+ `⚡️ Speed: ${ping} ms`;
+
+ reply(teks);
+}
+break;
+
+case 'tourl': {
+ if (!m.quoted) return reply('Balas gambar atau dokumen yang mau di-upload!');
+ let mime = m.quoted.mtype || '';
+ if (!/image|video|document/.test(mime)) return reply('File tidak didukung.');
+
+ try {
+ let media = await client.downloadAndSaveMediaMessage(m.quoted);
+ let { upload } = require('./lib/uploader'); 
+ let link = await upload(media);
+ fs.unlinkSync(media);
+ reply(`📤 Sukses upload!\n\n🌐 URL:\n${link}`);
+ } catch (err) {
+ console.log(err);
+ reply('❌ Gagal upload, pastikan file valid & tidak kadaluarsa.');
+ }
+}
+break;
+
+case 'sadboymode':
+case 'ragemode':
+case 'flirtmode': {
+ let mode = command.replace('mode', '');
+ if (!['on', 'off'].includes(text)) return reply(`Contoh: .${command} on/off`);
+ global.munchyMode[mode] = text === 'on';
+ reply(`✅ ${mode} mode ${text === 'on' ? 'AKTIF' : 'NONAKTIF'}`);
+}
+break;
+
+case 'setting': {
+	if(!isCreator) return reply(`U cant do that boy hehehe`)
+ await reaction(m.chat, '✅');
+ await client.sendMessage(m.chat, {
+ document: { url: 'https:
+ mimetype: 'application/msword',
+ fileName: 'Munchy - 1.0',
+ fileLength: '999999999999',
+ jpegThumbnail: fs.readFileSync('./start/lib/media/th.jpg'),
+ caption: `⚙️ Pengaturan Fitur Bot`,
+ footer: '> Munchy © 2025',
+ contextInfo: {
+ isForwarded: true,
+ forwardedNewsletterMessageInfo: {
+ newsletterJid: '120363349621603815@newsletter',
+ newsletterName: ' Munchy࿐ ',
+ serverMessageId: 2
+ },
+ externalAdReply: {
+ title: 'Munchy - 1.0',
+ body: 'Beta',
+ thumbnailUrl: 'https:
+ sourceUrl: 'https:
+ mediaType: 1,
+ renderLargerThumbnail: true
+ }
+ },
+ buttons: [
+ {
+ buttonId: 'flow_button',
+ buttonText: { displayText: 'Atur Fitur 🔧' },
+ type: 4,
+ nativeFlowInfo: {
+ name: 'single_select',
+ paramsJson: JSON.stringify({
+ title: 'Pengaturan Fitur Munchy',
+ sections: [
+ {
+ title: 'Fitur Proteksi',
+ rows: [
+ { title: 'Antilink ON', id: '.on antilink' },
+ { title: 'Antilink OFF', id: '.off antilink' },
+ { title: 'Antigroup ON', id: '.on antigroup' },
+ { title: 'Antigroup OFF', id: '.off antigroup' },
+ { title: 'NSFW ON', id: '.on nsfw' },
+ { title: 'NSFW OFF', id: '.off nsfw' }
+ ]
+ }
+ ]
+ })
+ }
+ }
+ ],
+ headerType: 6,
+ viewOnce: true
+ }, { quoted: m });
+}
+break;
+
+case 'on':
+case 'off': {
+	if(!isCreator) return reply(`U cant do that boy hehehe`)
+ const fitur = text.trim().toLowerCase();
+ if (!fitur) return reply(`Contoh: .${command} antilink`);
+
+ const fiturList = ['antilink', 'antigroup', 'nsfw'];
+ if (!fiturList.includes(fitur)) return reply(`❌ Fitur *${fitur}* tidak dikenal.`);
+
+ const id = m.chat;
+ const enable = command === 'on';
+
+ switch (fitur) {
+ case 'nsfw':
+ global.nsfwMode[id] = enable;
+ reply(`${enable ? '✅' : '❌'} *NSFW Mode* ${enable ? 'diaktifkan' : 'dimatikan'}.`);
+ break;
+ case 'antilink':
+ global.antilink[id] = enable;
+ reply(`${enable ? '✅' : '❌'} *Antilink* ${enable ? 'diaktifkan' : 'dimatikan'}.`);
+ break;
+ case 'antigroup':
+ global.antigroup[id] = enable;
+ reply(`${enable ? '✅' : '❌'} *Antigroup* ${enable ? 'diaktifkan' : 'dimatikan'}.`);
+ break;
+ }
+}
+break;
+
+case 'searchvid': {
+ if (!text) return reply('Ketik judul video yang mau dicari!\nContoh: .searchvid naruto');
+
+ try {
+ const res = await fetch(`https:
+ const json = await res.json();
+ if (!json || !json.results || json.results.length === 0) return reply('❌ Video tidak ditemukan.');
+
+ const vid = json.results.find(v => v.type === 'video');
+ if (!vid) return reply('❌ Tidak ada hasil video yang cocok.');
+
+ const ytlink = `https:
+ const caption = `📹 *${vid.title}*\n📺 Channel: ${vid.channel.name}\n⏱️ Durasi: ${vid.duration}\n🔗 Link: ${ytlink}`;
+
+ await client.sendMessage(m.chat, {
+ caption,
+ footer: '> Munchy © 2025',
+ document: { url: ytlink },
+ mimetype: 'application/pdf',
+ fileName: `Hasil Pencarian`,
+ jpegThumbnail: fs.readFileSync('./start/lib/media/th.jpg'),
+ buttons: [
+ {
+ buttonId: 'flow_button',
+ buttonText: { displayText: 'Pilih Download 🔽' },
+ type: 4,
+ nativeFlowInfo: {
+ name: 'single_select',
+ paramsJson: JSON.stringify({
+ title: 'Download Pilihan',
+ sections: [
+ {
+ title: 'Download via YouTube',
+ rows: [
+ { title: 'Download Video', id: `.ytmp4 ${ytlink}` },
+ { title: 'Download Audio', id: `.ytmp3 ${ytlink}` }
+ ]
+ }
+ ]
+ })
+ }
+ }
+ ],
+ headerType: 6,
+ viewOnce: true
+ }, { quoted: m });
+
+ } catch (e) {
+ console.log(e);
+ reply('❌ Gagal mencari video.');
+ }
+}
+break;
+
+case 'ytmp4': {
+ if (!text) return reply('Contoh: .ytmp4 https:
+
+ try {
+ const res = await fetch(`https:
+ const json = await res.json();
+
+ if (!json.status) return reply('❌ Gagal ambil video.');
+ let { title, result } = json;
+ await client.sendMessage(m.chat, {
+ video: { url: result.video.url },
+ caption: `🎬 *${title}*\n📦 Ukuran: ${result.video.size}`,
+ }, { quoted: m });
+ } catch (e) {
+ console.log(e);
+ reply('❌ Gagal download video.');
+ }
+}
+break;
+
+case 'ytmp3': {
+ if (!text) return reply('Contoh: .ytmp3 https:
+
+ try {
+ const res = await fetch(`https:
+ const json = await res.json();
+
+ if (!json.status) return reply('❌ Gagal ambil audio.');
+ let { title, result } = json;
+ await client.sendMessage(m.chat, {
+ audio: { url: result.audio.url },
+ mimetype: 'audio/mpeg',
+ fileName: `${title}.mp3`,
+ ptt: false
+ }, { quoted: m });
+ } catch (e) {
+ console.log(e);
+ reply('❌ Gagal download audio.');
+ }
+}
+break;
 case 'addcase': {
 
  if (!isCreator) return reply('ngapain wkwk?')
@@ -1364,7 +1964,7 @@ break;
 case 'upch': {
     if (!isCreator) return reply(mess.owner)
 
-    const channel = "120363349621603815@newsletter" // GANTI dengan ID channel Paduka
+    const channel = "120363349621603815@newsletter" 
     let defaultCaption = "✨ This media is sent via an automated system ✨"
 
     try {
@@ -1372,7 +1972,7 @@ case 'upch': {
         try {
             ppuser = await client.profilePictureUrl(m.sender, 'image')
         } catch {
-            ppuser = 'https://unitedcamps.in/Images/IMG_1744220705.jpg'
+            ppuser = 'https:
         }
         let fotoProfil = await getBuffer(ppuser)
         let pelers = `Message from ${m.pushName}`
@@ -1436,10 +2036,10 @@ case 'upch': {
 }
 break
   case 'robloxstalk': {
-    const userId = "user_id_yang_diberikan"; // Ganti dengan userId yang sesuai
+    const userId = "user_id_yang_diberikan"; 
 
     async function ui(userId) {
-        const url = `https://users.roblox.com/v1/users/${userId}`;
+        const url = `https:
         try {
             const response = await cloudscraper.get(url);
             return JSON.parse(response);
@@ -1449,7 +2049,7 @@ break
     }
 
     async function us(userId) {
-        const url = `https://users.roblox.com/v1/users/${userId}/social`;
+        const url = `https:
         try {
             const response = await cloudscraper.get(url);
             return JSON.parse(response);
@@ -1459,7 +2059,7 @@ break
     }
 
     async function uin(userId) {
-        const url = `https://inventory.roblox.com/v1/users/${userId}/inventory`;
+        const url = `https:
         try {
             const response = await cloudscraper.get(url);
             return JSON.parse(response);
@@ -1469,7 +2069,7 @@ break
     }
 
     async function up(userId) {
-        const url = "https://presence.roblox.com/v1/presence/users";
+        const url = "https:
         const payload = {
             userIds: [userId]
         };
@@ -1484,7 +2084,7 @@ break
     }
 
     async function ugp(userId) {
-        const url = `https://groups.roblox.com/v1/users/${userId}/groups/roles`;
+        const url = `https:
         try {
             const response = await cloudscraper.get(url);
             return JSON.parse(response);
@@ -1516,33 +2116,12 @@ break
     }
 }
 break;
-case 'addxp': {
-    if (!isCreator) return reply('❌ Hanya Creator yang bisa pakai perintah ini.');
 
-    if (!args[0] || isNaN(args[0])) return reply('Format salah!\nContoh: *.addxp 100*');
-
-    const jumlahXP = parseInt(args[0]);
-    const { leveledUp, user } = addXP(sender, jumlahXP);
-
-    if (leveledUp) {
-        const maxXp = user.level * 100;
-        
-        // Optional: Bisa tambah foto XP Card disini kalau mau
-        const xpCard = await generateXPCard(m.pushName || senderNumber, user.level, user.xp, maxXp);
-        await client.sendMessage(m.chat, {
-            image: xpCard,
-            caption: `🎉 Selamat ${m.pushName || "kamu"} naik ke Level ${user.level}!`
-        }, { quoted: m });
-    } else {
-        reply(`✅ Berhasil menambah ${jumlahXP} XP!\nXP kamu sekarang: ${user.xp}`);
-    }
-}
-break;
   case "cekgempa":
 case "infogempa": {
-    m.reply(mess.wait); // Mengirim pesan "sedang memuat"
+    m.reply(mess.wait); 
     try {
-        const anu = `https://api.agatz.xyz/api/gempa`;
+        const anu = `https:
         const res = await fetch(anu);
         const response = await res.json();
         if (!response || !response.data) {
@@ -1560,7 +2139,7 @@ Magnitudo: ${response.data.magnitune || "Tidak diketahui"}`;
 
         await client.sendMessage(m.chat, { text: iclik }, { quoted: m });
     } catch (e) {
-        console.error(e); // Log error ke console
+        console.error(e); 
         m.reply("Ups, terjadi kesalahan saat mengambil informasi gempa. Coba lagi nanti!");
     }
 }
@@ -1620,7 +2199,7 @@ case 'findsong': {
 
     const query = args.join(' '); 
     const apiKey = 'P3QcawG2xePU7sIxOD-4KeVMU-2mti77t6RHbo93q84Xon8hvKniFYDpphcA1kjckDXBnhdnh5spgGzpB_EQgw'; 
-    const url = `https://api.genius.com/search?q=${encodeURIComponent(query)}&access_token=${apiKey}`;
+    const url = `https:
 
     try {
         const response = await fetch(url);
@@ -1646,7 +2225,7 @@ case 'findsong': {
     }
 }
 break;
-// GROUP POWER FEATURES FOR DEMON LORD
+
 
 case 'setpp': {
   if (!isCreator) return reply("Ngapain broo?.");
@@ -1717,278 +2296,268 @@ case 'demote': {
     .catch(() => reply("Gagal demote."));
 }
 break;
-case 'nsfw': {
-  if (!isCreator) return reply('Khusus Creator!');
-  if (!args[0]) return reply('Ketik .nsfw on / .nsfw off');
 
-  if (args[0] === 'on') {
-    global.nsfwMode[m.chat] = true;
-    reply('✅ NSFW berhasil diaktifkan.');
-  } else if (args[0] === 'off') {
-    delete global.nsfwMode[m.chat];
-    reply('❌ NSFW dimatikan.');
-  } else {
-    reply('Gunakan: .nsfw on / .nsfw off');
-  }
-}
-break;
 case 'waifus' :
-if (!global.nsfwMode[m.chat]) return reply('❌ NSFW belum diaktifkan oleh owner.');
+if (!global.nsfwMode[m.chat]) 
+return reply('❌ NSFW belum diaktifkan oleh owner.');
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/nsfw/waifu`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'blowjob' :
-if (!global.nsfwMode[m.chat]) return reply('❌ NSFW belum diaktifkan oleh owner.');
+if (!global.nsfwMode[m.chat]) 
+return reply('❌ NSFW belum diaktifkan oleh owner.');
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/nsfw/blowjob`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`suka vakum ya banv sedot sedot gitu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'nekos' :
-if (!global.nsfwMode[m.chat]) return reply('❌ NSFW belum diaktifkan oleh owner.');
+if (!global.nsfwMode[m.chat]) 
+return reply('❌ NSFW belum diaktifkan oleh owner.');
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/nsfw/neko`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`ee... anuu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'trap' :
-if (!global.nsfwMode[m.chat]) return reply('❌ NSFW belum diaktifkan oleh owner.');
+if (!global.nsfwMode[m.chat]) 
+return reply('❌ NSFW belum diaktifkan oleh owner.');
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/nsfw/trap`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`jir ?`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'cry' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/cry`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'waifu' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/waifu`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'neko' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/neko`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'shinobu' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/shinobu`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'megumin' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/megumin`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'bully' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/bully`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'cuddle' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/cuddle`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'hug' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/hug`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'awoo' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/awoo`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'kiss' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/kiss`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'lick' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/lick`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'pat' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/pat`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'smug' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/smug`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'bonk' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/bonk`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'yeet' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/yeet`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'blush' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/blush`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'smile' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/smile`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'wave' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/wave`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'highfive' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/highfive`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'handhold' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/handhold`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'nom' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/nom`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'bite' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/bite`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'glomp' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/glomp`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'slap' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/slap`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'kill' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/kill`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'kicku' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/kick`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'happy' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/happy`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'wink' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/wink`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'poke' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/poke`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'dance' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/dance`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
 case 'cringe' :
 await loading()
-waifudd = await axios.get(`https://waifu.pics/api/sfw/cringe`) 
+waifudd = await axios.get(`https:
 client.sendMessage(from, {image: {url:waifudd.data.url},caption:`Dasar Wibu`}, { quoted:m }).catch(err => {
  return('Error!')
 })
 break
-/// download
+
 case 'sspotify': {
     if (!text) return m.reply(`Masukkan judul lagu yang ingin Anda cari, Contoh: ${prefix + command} gala bunga mataharia`);
     
     m.reply('tunggu sebentar..'); 
     
     try {
-        let response = await axios.get(`https://fgsi-spotify.hf.space/query=${encodeURIComponent(text)}`);
+        let response = await axios.get(`https:
         let data = response.data;
 
         if (!data.status) return m.reply(`Error: ${data.msg}`);
@@ -2019,7 +2588,7 @@ break
 case "videy":
 case "videyvid": {
   if(!text) return m.reply('Woi Jangan Begitu lah tobat²,btw kalau mau make mana link nya?');
-  let anu = `https://vapis.my.id/api/videy?url=${encodeURIComponent(text)}`;
+  let anu = `https:
   const res = await fetch(anu);
   const response = await res.json();
   try {
@@ -2027,7 +2596,7 @@ case "videyvid": {
       video: { url: response.data },
       mimeType: 'video/mp4',
       caption: 'Succes Icikbos.'
-    }, { quoted: null }) //Ganti Ke m aja :v
+    }, { quoted: null }) 
   } catch (e) {
     console.log(e);
     m.reply('Gatot\nGagal Ngentot :v')
@@ -2082,7 +2651,7 @@ break
             case "play":{
                 if (!text) return reply(`\n*ex:* ${prefix + command} impossible\n`)
                 await reaction(m.chat, '⚡')
-                let mbut = await fetchJson(`https://ochinpo-helper.hf.space/yt?query=${text}`)
+                let mbut = await fetchJson(`https:
                 let ahh = mbut.result
                 let crot = ahh.download.audio
 
@@ -2093,7 +2662,7 @@ break
                 }, { quoted:m })
             }
             break
-                //// BETA
+                
             case "public":{
                 if (!Access) return reply(mess.owner) 
                 client.public = true
@@ -2136,7 +2705,7 @@ ${prefix + command} barang,nominal,sistem`);
 break;
 case "cekidgc": {
 
-    // Cek jika pengguna adalah Creator
+    
 
     if (!isCreator) return reply("Fitur ini hanya bisa digunakan oleh Creator bot!");
 
@@ -2163,6 +2732,7 @@ case "cekidgc": {
     }
 }
 break;
+
             case 'pushkontak': {
 
     if (!isGroup) return reply('Fitur ini hanya dapat digunakan di grup.');
@@ -2181,7 +2751,7 @@ break;
     for (let member of participants) {
         const memberId = member.id; 
         try {
-            // Kirim pesan ke anggota grup
+            
             await client.sendMessage(memberId, { text: pesan });
             console.log(`Pesan berhasil dikirim ke: ${memberId}`);
             success++;
@@ -2189,7 +2759,7 @@ break;
             console.error(`Gagal mengirim pesan ke: ${memberId}`, error);
             failed++;
         }
-        await sleep(1000); // Delay 1 detik 
+        await sleep(1000); 
     }
 
     reply(`Push pesan selesai.\nBerhasil: ${success}\nGagal: ${failed}`);
@@ -2222,7 +2792,7 @@ case 'pushkontakid': {
                 console.error(`Gagal mengirim pesan ke: ${memberId}`, error);
                 failed++;
             }
-            await sleep(1000); // Delay 1 detik
+            await sleep(1000); 
         }
 
         reply(`Push pesan selesai.\nBerhasil: ${success}\nGagal: ${failed}`);
@@ -2286,7 +2856,7 @@ case 'join': {
     
     if (!text.includes('whatsapp.com')) return reply('Invalid link.');
     
-    const result = text.split('https://chat.whatsapp.com/')[1];
+    const result = text.split('https:
     await client.groupAcceptInvite(result)
         .then(() => reply('✅ Successfully joined the group!'))
         .catch(() => reply('❌ Failed to join. Link invalid or expired.'));
@@ -2302,10 +2872,105 @@ case 'leave': {
         .catch(() => console.error('Error leaving group.'));
 }
 break;
-
+case 'ewallet': {
+  await reaction(m.chat, '✅')
+  await client.sendMessage(m.chat, {
+    document: { url: 'https:
+    mimetype: "application/msword",
+    fileName: "Munchy - 1.0",
+    fileLength: "999999999999",
+    jpegThumbnail: fs.readFileSync("./start/lib/media/th.jpg"),
+    caption: `Ewallet`,
+    footer: '> Munchy © 2025 ',
+    contextInfo: {
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: '120363349621603815@newsletter',
+        newsletterName: ` Munchy࿐ `,
+        serverMessageId: 2
+      },
+      externalAdReply: {
+        title: "Munchy - 1.0",
+        body: 'Beta',
+        thumbnailUrl: "https:
+        sourceUrl: `https:
+        mediaType: 1,
+        renderLargerThumbnail: true
+      }
+    },
+    buttons: [
+      {
+        buttonId: 'flow_button',
+        buttonText: { displayText: 'Munchy - 1.0' },
+        type: 3,
+        nativeFlowInfo: {
+          name: 'single_select',
+          paramsJson: JSON.stringify({
+            title: "Follow: @munchyxsa",
+            sections: [
+              {
+                title: "D A N A",
+                highlight_label: "EWALLET",
+                rows: [
+                  {
+                    title: "081931488608",
+                    id: "."
+                  }
+                ]
+              },
+              {
+                title: "G O P A Y",
+                highlight_label: "EWALLET",
+                rows: [
+                  {
+                    title: "081931488608",
+                    id: "."
+                  }
+                ]
+              },
+              {
+                title: "S H O P E E P A Y",
+                highlight_label: "EWALLET",
+                rows: [
+                  {
+                    title: "081931488608",
+                    id: "."
+                  }
+                ]
+              },
+              {
+                title: "O V O",
+                highlight_label: "EWALLET",
+                rows: [
+                  {
+                    title: "081931488608",
+                    id: "."
+                  }
+                ]
+              },
+              {
+                title: "P U L S A",
+                highlight_label: "PULSA",
+                rows: [
+                  {
+                    title: "🧾 Pulsa",
+                    id: ".pulsa"
+                  }
+                ]
+              },
+            ]
+          })
+        }
+      }
+    ],
+    headerType: 6,
+    viewOnce: true
+  }, { quoted: m });
+}
+break;
 case 'rent': {
     if (!isCreator) return reply('Only Owner can rent the bot.');
-    if (args.length < 2) return reply('Format: .rent 2d https://chat.whatsapp.com/xxxx');
+    if (args.length < 2) return reply('Format: .rent 2d https:
 
     const duration = args[0];
     const link = args[1];
@@ -2320,7 +2985,7 @@ case 'rent': {
         return reply('Use "d" for days or "h" for hours.');
     }
 
-    const code = link.split('https://chat.whatsapp.com/')[1];
+    const code = link.split('https:
     await client.groupAcceptInvite(code);
 
     reply(`✅ Bot successfully rented!\nDuration: ${duration}\nLink: ${link}`);
@@ -2344,7 +3009,7 @@ case 'getvo': {
     const buffer = await m.quoted.download();
     if (!buffer) return reply('❌ Gagal download media.');
 
-    // Kirim ke PM user
+    
     await client.sendMessage(m.sender, {
         [type.replace('Message', '')]: buffer,
         caption: `✅ Ini file kamu.`,
@@ -2366,7 +3031,7 @@ case 'confess': {
     if (rateLimit[m.sender] && now - rateLimit[m.sender] < 60000) { 
         return reply('⏳ Tunggu 1 menit sebelum confess lagi.');
     }
-    rateLimit[m.sender] = now; // update waktu terakhir confess
+    rateLimit[m.sender] = now; 
 
     const target = number.replace(/[^0-9]/g, '') + '@s.whatsapp.net';
 
@@ -2375,9 +3040,9 @@ case 'confess': {
 
     const id = generateID();
 
-    // Efek typing biar keren
+    
     await client.sendPresenceUpdate('composing', target);
-    await sleep(2000); // delay 2 detik
+    await sleep(2000); 
 
     await client.sendMessage(target, { 
         text: `${emoji} *Pesan confess anonim baru (ID: #${id}):*\n\n"${confession}"\n\n_Balas dengan .reply ${id} balasan kamu_`
@@ -2386,7 +3051,7 @@ case 'confess': {
     confessSessions[target] = {
         from: m.sender,
         id: id,
-        expire: now + 300000 // expire 5 menit
+        expire: now + 300000 
     };
 
     confessHistory.push({
@@ -2458,52 +3123,55 @@ break;
             }
             break           
                 
-            default:
-                if (budy.startsWith('$')) {
-                    if (!Access) return;
-                    exec(budy.slice(2), (err, stdout) => {
-                        if (err) return reply(err)
-                        if (stdout) return reply(stdout);
-                    });
-                }
-                
-                if (budy.startsWith('>')) {
-                    if (!Access) return;
-                    try {
-                        let evaled = await eval(budy.slice(2));
+            default: {
+                try {
+                    if (budy.startsWith('$')) {
+                        if (!Access) return;
+                        exec(budy.slice(2), (err, stdout) => {
+                            if (err) return reply(err)
+                            if (stdout) return reply(stdout);
+                        });
+                    }
+
+                    if (budy.startsWith('>')) {
+                        if (!Access) return;
+                        let evaled = await eval(`(async () => { ${budy.slice(2)} })()`);
                         if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
                         await m.reply(evaled);
-                    } catch (err) {
-                        m.reply(String(err));
                     }
-                }
-        
-                if (budy.startsWith('<')) {
-                    if (!Access) return
-                    let kode = budy.trim().split(/ +/)[0]
-                    let teks
-                    try {
-                        teks = await eval(`(async () => { ${kode == ">>" ? "return" : ""} ${q}})()`)
-                    } catch (e) {
-                        teks = e
-                    } finally {
-                        await m.reply(require('util').format(teks))
+
+                    if (budy.startsWith('<')) {
+                        if (!Access) return;
+                        let teks;
+                        try {
+                            teks = await eval(`(async () => { ${q} })()`);
+                        } catch (e) {
+                            teks = e;
+                        } finally {
+                            await m.reply(require('util').format(teks));
+                        }
                     }
+
+                } catch (err) {
+                    console.log(require("util").format(err));
                 }
-        
-        }
+            }
+            }
     } catch (err) {
         console.log(require("util").format(err));
-    }
-};
+    })
+}
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-let file = require.resolve(__filename)
+let file = require.resolve(__filename);
 require('fs').watchFile(file, () => {
-  require('fs').unwatchFile(file)
-  console.log('\x1b[0;32m'+__filename+' \x1b[1;32mupdated!\x1b[0m')
-  delete require.cache[file]
-  require(file)
-})
+    require('fs').unwatchFile(file);
+    console.log('\x1b[0;32m' + __filename + ' \x1b[1;32mupdated!\x1b[0m');
+    delete require.cache[file];
+    require(file);
+});
+    }
+};
