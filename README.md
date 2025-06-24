@@ -10,4 +10,5 @@
 
 <p align="center">
   <a href="https://github.com/Cod3Uchiha?tab=followers"><img title="Followers" src="https://img.shields.io/github/followers/Cod3Uchiha?label=Followers&style=social"></a>
+  
   <a href="https://github.com/Cod3Uchiha/TKM-bot/stargazers/"><img title="STARS" src="https://img.shields.io/github/stars/Cod3Uchiha/TKM-bot?&style=social"></a>
