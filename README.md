@@ -1,5 +1,5 @@
 <p align="center">
-  # June MD
+  June MD
 </p>
 
 <p align="center">
