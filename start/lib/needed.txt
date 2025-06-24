@@ -1,5 +1,0 @@
-if (m.mtype === 'stickerMessage') {
-  const hash = m.msg.fileSha256?.toString('base64');
-  console.log(`Stiker Detected:\nHash (fileSha256): ${hash}`);
-  reply(`✅ Hash base64 untuk stiker ini:\n${hash}`);
-}
