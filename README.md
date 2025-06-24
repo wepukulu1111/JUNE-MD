@@ -3,8 +3,8 @@ TKM bot v³
 </p>
 
 <p align="center">
-  <a href="https://github.com/Cod3Uchiha">
-    <img alt="TKM bot logo" height="200" src="https://files.catbox.moe/5bzcdl.jpg">
+  <a href="https://files.catbox.moe/xr5pk3.jpg">
+    <img alt="TKM bot logo" height="200" src="https://files.catbox.moe/xr5pk3.jpg">
   </a>
 </p>
 
