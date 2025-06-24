@@ -16,7 +16,7 @@ global.linksaluran = "https://youtube.com/@TKM-mods"
 global.linkyt = 'https://youtube.com/@TKM-mods'
 global.linktele = "https://t.me/tkm_mods"
 global.packname = "Created By TKM-mods"
-global.author = "Mr Ntando Ofc"
+global.author = "TKM"
 
 //========== Setting Event ==========//
 global.welcome = true
