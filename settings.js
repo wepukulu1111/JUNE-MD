@@ -20,7 +20,7 @@ global.author = "TKM"
 
 //========== Setting Event ==========//
 global.welcome = true
-global.autoread = true
+global.autoread = false
 global.anticall = true
 global.autoreadsw = true
 global.owneroff = false
