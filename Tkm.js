@@ -2844,6 +2844,7 @@ ReplyTkm("*Successfully Disabled Welcome ✅*\nType *.statusbot* To view Status 
 return ReplyTkm(example("on/off\n\nType *.statusbot* To view Status Setting Bot"))
 }}
 break
+		/*
 case "autoread": {
 if (!isOwner) return ReplyTkm(msg.owner)
 if (!text) return ReplyTkm(example("on/off\nType *.statusbot* To view Status Setting Bot"))
@@ -2858,7 +2859,8 @@ ReplyTkm("*Successfully Disabled Autoread ✅*\nType *.statusbot* To view Status
 } else {
 return ReplyTkm(example("on/off\n\nType *.statusbot* To view Status Settingan Bot"))
 }}
-break
+break*/
+		
 case "autoreadsw": {
 if (!isOwner) return ReplyTkm(msg.owner)
 if (!text) return ReplyTkm(example("on/off\nType *.statusbot* To view Status Setting Bot"))
@@ -2897,13 +2899,12 @@ var teks = `
 ╰─▢
 > SETTINGS
 
-* Autoread : ${global.autoread ? "*Active*" : "*inactive*"}
 * Autoreadsw : ${global.autoreadsw ? "*Active*" : "*inactive*"}
 * Anticall : ${global.anticall ? "*Active*" : "*inactive*"}
 * Welcome : ${global.welcome ? "*Active*" : "*inactive*"}
 
 *Example Usage :*
-Type *.autoread* on/off`
+Type *.autoreadsw* on/off`
 ReplyTkm(teks)
 }
 break
