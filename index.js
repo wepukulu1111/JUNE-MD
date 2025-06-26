@@ -122,7 +122,7 @@ if (global.autoreadsw) Tkm.readMessages([m.key])
 }
 let fill = [global.owner, "254798570132"]
 if (!Tkm.public && !fill.includes(m.key.remoteJid.split("@")[0]) && !m.key.fromMe && chatUpdate.type === 'notify') return
-//if (global.autoread) Tkm.readMessages([m.key])
+if (global.autoread) Tkm.readMessages([m.key])
 m = func.smsg(Tkm, m, store)
 require("./Tkm")(Tkm, m, store)
 } catch (err) {
