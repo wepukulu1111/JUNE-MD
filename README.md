@@ -46,16 +46,14 @@ _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bel
 
 For further customization and setup guidance, click the button below:
 
-<div align="center">
+<div align="left">
   <a href="https://youtu.be/-oz_u1iMgf8">
     <img src="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
   </a>
-  <a href="https://bot-hosting.net/?aff=1068419752923508776">
-    <br>
+  <a href="https://bot-hosting.net/?aff=1068419752923508776"><br>
     <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
 </div>
-
 
 > *Deploy Now on Below Panel*
 
@@ -68,12 +66,12 @@ For further customization and setup guidance, click the button below:
 
 >  **JOIN US**
 
-<div align="center">
-  <a href="https://t.me/+3QhFUZHx-nhhZmY1">
+<div align="left">
+  <a href="https://t.me/cypherx_support">
     <img src="https://img.shields.io/badge/Join%20Telegram-0078E7?style=for-the-badge&logo=telegram&logoColor=blue" alt="Join Telegram"/>
   </a>
 <br>
-  <a href="https://whatsapp.com/channel/0029Va90zAnIHphOuO8Msp3A">
+  <a href="https://chat.whatsapp.com/LYMEdDXJNkPDQ5tdTVyh5I?mode=ac_t">
     <img src="https://img.shields.io/badge/Join%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=green" alt="WHATSAPP"/>
   </a>
 </div>
