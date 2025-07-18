@@ -14,7 +14,7 @@
 
 ---
 
-## 🚀 Steps to Deploy
+> **DEPLOMENT STEPS**
 
 > 1:  **Fork the Repository**
 
@@ -51,6 +51,7 @@ For further customization and setup guidance, click the button below:
     <img src="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
   </a>
   <a href="https://bot-hosting.net/?aff=1068419752923508776">
+    <br>
     <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
 </div>
