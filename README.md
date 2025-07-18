@@ -50,7 +50,7 @@ _For further setup & guidance, click the button below🩹_
   <a href="https://youtu.be/-oz_u1iMgf8">
     <img src="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
   </a><br>
-  <a href="https://bot-hosting.net/?aff=1068419752923508776"><br>
+  <a href="https://bot-hosting.net/?aff=1068419752923508776">
     <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
 </div>
