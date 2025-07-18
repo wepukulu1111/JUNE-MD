@@ -1,11 +1,7 @@
 const settings = require('../settings');
-
 const fs = require('fs');
-
 const path = require('path');
-
 async function helpCommand(sock, chatId, message) {
-
     const helpMessage = `
 ╔═══════════════════╗
       🌌  *𝐉ᴜɴᴇ 𝐌ᴅ*  🌌
