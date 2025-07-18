@@ -16,48 +16,42 @@
 
 ## 🚀 Steps to Deploy
 
-### Step 1: Fork the Repository
+> 1:  **Fork the Repository**
 
 _Click the button below to fork  June Md repository to your GitHub account_
 
 <div align="left">
   <a href="https://github.com/vinpink2/June-md/fork">
-    <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="Fork the repository"/>
+    <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="FORK REPO"/>
   </a>
 </div>
 
-
-## Step 2: Get Pair Code
+> 2:  **Get Pair Code**
 
 _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bellow🥈_
 
 <div align="left">
   <a href="https://replit.com/@DGXeon/Xeon-PairCode?v=1" target="_blank">
-    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Replit-success?style=for-the-badge" alt="Deploy on Replit"/>
+    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Replit-success?style=for-the-badge" alt="REPLIT"/>
   </a>
 </div>
 
 <div align="left">
   <a href="https://knight-bot-paircode.onrender.com" target="_blank">
-    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Easy%20Method-ffffff?style=for-the-badge" alt="Generate Pair Code"/>
+    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Easy%20Method-red?style=for-the-badge" alt="PAIRCODE"/>
   </a>
 </div>
 
-
-### After getting creds.json file, upload it to session folder
-
----
-
-### Step 3: Deploy Now
+> 3:  **Deploy Now**
 
 For further customization and setup guidance, click the button below:
 
 <div align="center">
   <a href="https://youtu.be/-oz_u1iMgf8">
-    <img src="https://img.shields.io/badge/Deploy Tutorial-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
+    <img src="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
   </a>
   <a href="https://bot-hosting.net/?aff=1068419752923508776">
-    <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="Deploy on Panel"/>
+    <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
 </div>
 
@@ -65,7 +59,7 @@ For further customization and setup guidance, click the button below:
 ### Deploy Now on Below Panel
 <div align="left">
 <a href="https://dashboard.katabump.com/auth/login#d6b7d6" target="_blank">
-  <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=maroon" alt="Katabump"/>
+  <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=green" alt="KATABUMP"/>
 </a>
 </div>
 
@@ -76,6 +70,9 @@ For further customization and setup guidance, click the button below:
     <img src="https://img.shields.io/badge/Join%20Telegram-0078E7?style=for-the-badge&logo=telegram&logoColor=blue" alt="Join Telegram"/>
   </a>
   <a href="https://whatsapp.com/channel/0029Va90zAnIHphOuO8Msp3A">
-    <img src="https://img.shields.io/badge/Join%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=green" alt="Join WhatsApp"/>
+    <img src="https://img.shields.io/badge/Join%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=green" alt="WHATSAPP"/>
   </a>
 </div>
+
+
+
