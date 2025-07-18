@@ -46,7 +46,6 @@ _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bel
 
 _For further setup & guidance, click the button below🩹_
 > **Deploy Now on Below Panel**
-
 <div align="left">
   <a href="https://youtu.be/-oz_u1iMgf8">
     <img src="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
@@ -54,16 +53,14 @@ _For further setup & guidance, click the button below🩹_
   <a href="https://bot-hosting.net/?aff=1068419752923508776"><br>
     <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
-</div><br>
+</div>
 <div align="left">
 <a href="https://dashboard.katabump.com/auth/login#d6b7d6" target="_blank">
-  <br>
   <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=green" alt="KATABUMP"/>
 </a>
 </div>
 
 >  **JOIN US**
-
 <div align="left">
   <a href="https://t.me/cypherx_support">
     <img src="https://img.shields.io/badge/Join%20Telegram-0078E7?style=for-the-badge&logo=telegram&logoColor=blue" alt="Join Telegram"/>
