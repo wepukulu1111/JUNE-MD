@@ -14,7 +14,7 @@
 
 ---
 
-> **DEPLOMENT STEPS**
+>  🌌 **DEPLOMENT & STEPS** 🌌
 
 > 1:  **Fork the Repository**
 
@@ -44,19 +44,17 @@ _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bel
 
 > 3:  **Deploy Now**
 
-For further customization and setup guidance, click the button below:
+_For further setup & guidance, click the button below🩹_
+> **Deploy Now on Below Panel**
 
 <div align="left">
   <a href="https://youtu.be/-oz_u1iMgf8">
     <img src="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
-  </a>
+  </a><br>
   <a href="https://bot-hosting.net/?aff=1068419752923508776"><br>
     <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
-</div>
-
-> *Deploy Now on Below Panel*
-
+</div><br>
 <div align="left">
 <a href="https://dashboard.katabump.com/auth/login#d6b7d6" target="_blank">
   <br>
