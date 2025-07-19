@@ -32,7 +32,7 @@ _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bel
 
 <div align="left">
   <a href="https://replit.com/@DGXeon/Xeon-PairCode?v=1" target="_blank">
-    <img src="https://img.shields.io/badge/PAIR%-Replit-success?style=for-the-badge" alt="REPLIT"/>
+    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Replit-success?style=for-the-badge" alt="REPLIT"/>
   </a>
 </div>
 
