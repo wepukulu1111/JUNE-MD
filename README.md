@@ -83,7 +83,7 @@ _For further setup & guidance, click the button below🩹_
   </a>
 <br>
   <a href="https://chat.whatsapp.com/LYMEdDXJNkPDQ5tdTVyh5I?mode=ac_t">
-    <img src="https://img.shields.io/badge/Join%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=green" alt="WHATSAPP"/>
+    <img src="https://img.shields.io/badge/Join%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=darkgreen" alt="WHATSAPP"/>
   </a>
 </div>
 
