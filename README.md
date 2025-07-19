@@ -54,7 +54,8 @@ _For further setup & guidance, click the button below🩹_
     <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
 </div>
-> _Deploy On katabump panel_
+
+> **Deploy On katabump panel**
 <div align="left">
   <a href ="https://youtu.be/-oz_u1iMgf8">
     <img src ="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt ="YouTube Link"/>
