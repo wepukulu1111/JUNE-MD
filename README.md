@@ -22,7 +22,7 @@ _Click the button below to fork  June Md repository to your GitHub account_
 
 <div align="left">
   <a href="https://github.com/vinpink2/June-md/fork">
-    <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="FORK REPO"/>
+    <img src="https://img.shields.io/badge/Fork%20Repo-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=darkblue&color=darkblue" alt="FORK REPO"/>
   </a>
 </div>
 
