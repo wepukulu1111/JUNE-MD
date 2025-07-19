@@ -1,8 +1,8 @@
-#  🌌 JUNE MD
+# 🌌JUNE MD
 
 <div align="center"> 
   <a href="https://git.io/typing-svg"> 
-    <img src="https://readme-typing-svg.demolab.com?font=Ribeye&size=50&pause=1000&color=33ff00&center=true&width=910&height=100&lines=June-MD;Multi+Device+Whatsapp+Bot;Made+By+Suprem" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Ribeye&size=50&pause=1000&color=33ff00&center=true&width=910&height=100&lines=JUNE+MD;Multi+Device+Whatsapp+Bot;Made+By+Suprem" alt="Typing SVG" />
   </a> 
 </div> 
 
@@ -19,7 +19,7 @@
 > 1:  **Fork the Repository**
 
 _Click the button below to fork  June Md repository to your GitHub account_
-
+[![Typing SVG](https://readme-typing-svg.demolab.com/?lines=Tap+fork+button+Bellow+To+Fork;June+MD+REPO+On+Github)](https://git.io/typing-svg)
 > <div align="left">
   <a href="https://github.com/vinpink2/June-md/fork">
     <img src="https://img.shields.io/badge/Fork%20Repo-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=darkblue&color=darkblue" alt="FORK REPO"/>
@@ -45,6 +45,8 @@ _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bel
 > 3:  **Deploy Now**
 
 _For further setup & guidance, click the button below🩹_
+[![Typing SVG](https://readme-typing-svg.demolab.com/?lines=Watch+The+Deployment+Tutorials+Bellow;For+Panel+Deployments)](https://git.io/typing-svg)
+
 > **Deploy Now on Below Panel**
 <div align="left">
   <a href="https://youtu.be/-oz_u1iMgf8">
