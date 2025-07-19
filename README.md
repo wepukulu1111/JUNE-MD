@@ -20,7 +20,7 @@
 
 _Click the button below to fork  June Md repository to your GitHub account_
 
-<div align="left">
+> <div align="left">
   <a href="https://github.com/vinpink2/June-md/fork">
     <img src="https://img.shields.io/badge/Fork%20Repo-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=darkblue&color=darkblue" alt="FORK REPO"/>
   </a>
@@ -54,10 +54,10 @@ _For further setup & guidance, click the button below🩹_
     <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
 </div>
+> _Deploy On katabump panel_
 <div align="left">
   <a href ="https://youtu.be/-oz_u1iMgf8">
     <img src ="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt ="YouTube Link"/>
-<div align="left">
 <a href="https://dashboard.katabump.com/auth/login#d6b7d6" target="_blank">
   <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=green" alt="KATABUMP"/>
 </a>
