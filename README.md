@@ -55,6 +55,9 @@ _For further setup & guidance, click the button below🩹_
   </a>
 </div>
 <div align="left">
+  <a href ="https://youtu.be/-oz_u1iMgf8">
+    <img src ="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt ="YouTube Link"/>
+<div align="left">
 <a href="https://dashboard.katabump.com/auth/login#d6b7d6" target="_blank">
   <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=green" alt="KATABUMP"/>
 </a>
