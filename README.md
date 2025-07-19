@@ -42,7 +42,17 @@ _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bel
   </a>
 </div>
 
-> 3:  **Deploy Now**
+> 3: **DOWNLOAD BOT ZIP**
+
+_Download Bot Zip file From the button Bellow_
+<p align="left">
+    <a href="https://codeload.github.com/Dark-Xploit/SPACE-MD/zip/refs/heads/main" target="_blank">
+        <img alt="Download zip" src="https://img.shields.io/badge/Download-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=darkorange&color=darkgreen"/>
+    </a>
+</p>
+
+
+> 4:  **Deploy Now**
 
 _For further setup & guidance, click the button below🩹_
 [![Typing SVG](https://readme-typing-svg.demolab.com/?lines=Watch+The+Deployment+Tutorials+Bellow;For+Panel+Deployments)](https://git.io/typing-svg)
@@ -62,7 +72,7 @@ _For further setup & guidance, click the button below🩹_
   <a href ="https://youtu.be/-oz_u1iMgf8">
     <img src ="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt ="YouTube Link"/>
 <a href="https://dashboard.katabump.com/auth/login#adc462" target="_blank"><br>
-  <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=green" alt="KATABUMP"/>
+  <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=darkgreen" alt="KATABUMP"/>
 </a>
 </div>
 
