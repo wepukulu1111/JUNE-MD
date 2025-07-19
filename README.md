@@ -2,7 +2,7 @@
 
 <div align="center"> 
   <a href="https://git.io/typing-svg"> 
-    <img src="https://readme-typing-svg.demolab.com?font=Ribeye&size=50&pause=1000&color=33ff00&center=true&width=910&height=100&lines=JUNE+MD;Multi+Device+Whatsapp+Bot;Made+By+Suprem" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Rockwell&size=50&pause=1000&color=33ff00&center=true&width=910&height=100&lines=JUNE-MD;Multi+Device+Whatsapp+Bot;Made+By+Suprem" alt="Typing SVG" />
   </a> 
 </div> 
 
@@ -47,7 +47,7 @@ _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bel
 _Download Bot Zip file From the button Bellow_
 <p align="left">
     <a href="https://codeload.github.com/vinpink2/JUNE-MD/zip/refs/heads/main" target="_blank">
-        <img alt="Download zip" src="https://img.shields.io/badge/Download-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=darkorange&color=darkgreen"/>
+        <img alt="Download zip" src="https://img.shields.io/badge/Download-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=darkorange&color=darkblue"/>
     </a>
 </p>
 
@@ -72,14 +72,14 @@ _For further setup & guidance, click the button below🩹_
   <a href ="https://youtu.be/-oz_u1iMgf8">
     <img src ="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt ="YouTube Link"/>
 <a href="https://dashboard.katabump.com/auth/login#adc462" target="_blank"><br>
-  <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=darkgreen" alt="KATABUMP"/>
+  <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=blue" alt="KATABUMP"/>
 </a>
 </div>
 
 >  **JOIN US**
 <div align="left">
   <a href="https://t.me/cypherx_support">
-    <img src="https://img.shields.io/badge/Join%20Telegram-0078E7?style=for-the-badge&logo=telegram&logoColor=blue" alt="Join Telegram"/>
+    <img src="https://img.shields.io/badge/Join%20Telegram-0078E7?style=for-the-badge&logo=telegram&logoColor=darkblue" alt="Join Telegram"/>
   </a>
 <br>
   <a href="https://chat.whatsapp.com/LYMEdDXJNkPDQ5tdTVyh5I?mode=ac_t">
