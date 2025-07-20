@@ -10,7 +10,7 @@ async function githubCommand(sock, chatId, message) {
     if (!res.ok) throw new Error('Error fetching repository data');
     const json = await res.json();
 
-    let txt = `*/  𝐉ᴜɴᴇ 𝐌ᴅ  /*\n\n`;
+    let txt = `*/ 𝐉ᴜɴᴇ 𝐌ᴅ /*\n\n`;
     txt += `🔸  *Name* : ${json.name}\n`;
     txt += `🔸  *Watchers* : ${json.watchers_count}\n`;
     txt += `🔸  *Size* : ${(json.size / 1024).toFixed(2)} MB\n`;
