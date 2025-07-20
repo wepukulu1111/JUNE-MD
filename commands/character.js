@@ -56,11 +56,11 @@ async function characterCommand(sock, chatId, message) {
         });
 
         // Create character analysis message
-        const analysis = `🔮 *Character Analysis* 🔮\n\n` +
-            `👤 *User:* ${userToAnalyze.split('@')[0]}\n\n` +
-            `✨ *Key Traits:*\n${traitPercentages.join('\n')}\n\n` +
-            `🎯 *Overall Rating:* ${Math.floor(Math.random() * 21) + 80}%\n\n` +
-            `Note: This is a fun analysis and should not be taken seriously!`;
+        const analysis = `🔷 *Character Ratings* 🔷\n\n` +
+            `🔸 *User:* ${userToAnalyze.split('@')[0]}\n\n` +
+            `🔸 *Key Traits:*\n${traitPercentages.join('\n')}\n\n` +
+            `🔸 *Overall Rating:* ${Math.floor(Math.random() * 21) + 80}%\n\n` +
+            `🛑 *Note: _This is a fun analysis!_`;
 
         // Send the analysis with the user's profile picture
         await sock.sendMessage(chatId, {
