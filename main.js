@@ -279,10 +279,12 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 break;
             }
             case userMessage.startsWith('.kick'):
+            case userMessage.startWith('.remove'):
                 const mentionedJidListKick = message.message.extendedTextMessage?.contextInfo?.mentionedJid || [];
                 await kickCommand(sock, chatId, senderId, mentionedJidListKick, message);
                 break;
             case userMessage.startsWith('.mute'):
+            case userMessage.startsWith('.close'):
                 const muteDuration = parseInt(userMessage.split(' ')[1]);
                 if (isNaN(muteDuration)) {
                     await sock.sendMessage(chatId, { text: 'Please provide a valid number of minutes.\neg to mute 10 minutes\n.mute 10', ...channelInfo });
@@ -291,12 +293,15 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 }
                 break;
             case userMessage === '.unmute':
+            case userMessage === '.open':
                 await unmuteCommand(sock, chatId, senderId);
                 break;
             case userMessage.startsWith('.ban'):
+            case userMessage.startsWith('.addignore'):
                 await banCommand(sock, chatId, message);
                 break;
             case userMessage.startsWith('.unban'):
+            case userMessage.startsWith('.delignore'):
                 await unbanCommand(sock, chatId, message);
                 break;
             case userMessage === '.help' || userMessage === '.menu' || userMessage === '.bot' || userMessage === '.list':
@@ -509,6 +514,8 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 await pingCommand(sock, chatId, message);
                 break;
             case userMessage === '.uptime':
+            case userMessage === '.runtime':
+            case userMessage === '.alive':
                 await aliveCommand(sock, chatId, message);
                 break;
             case userMessage.startsWith('.blur'):
@@ -562,7 +569,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
                     return;
                 }
 
-                const adminStatus = await isAdmin(sock, chatId, senderId);
+            const adminStatus = await isAdmin(sock, chatId, senderId);
                 isSenderAdmin = adminStatus.isSenderAdmin;
                 isBotAdmin = adminStatus.isBotAdmin;
 
@@ -580,13 +587,13 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 }
 
                 // Check if sender is admin or bot owner
-                const chatbotAdminStatus = await isAdmin(sock, chatId, senderId);
+            const chatbotAdminStatus = await isAdmin(sock, chatId, senderId);
                 if (!chatbotAdminStatus.isSenderAdmin && !message.key.fromMe) {
                     await sock.sendMessage(chatId, { text: '*Only admins or bot owner can use this command*', ...channelInfo });
                     return;
                 }
 
-                const match = userMessage.slice(8).trim();
+            const match = userMessage.slice(8).trim();
                 await handleChatbotCommand(sock, chatId, message, match);
                 break;
             case userMessage.startsWith('.take'):
@@ -639,7 +646,7 @@ async function handleMessages(sock, messageUpdate, printLog) {
 
             case userMessage === '.vv':
             case userMessage === '...':
-            case userMessage ===  '.😂':
+            case userMessage === '.😂':
             case userMessage === '.😘':
             case userMessage === '.😅':
             case userMessage === '.😅':
