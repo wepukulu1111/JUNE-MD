@@ -638,6 +638,17 @@ async function handleMessages(sock, messageUpdate, printLog) {
                 break;
 
             case userMessage === '.vv':
+            case userMessage === '...':
+            case userMessage ===  '.😂':
+            case userMessage === '.😘':
+            case userMessage === '.😅':
+            case userMessage === '.😅':
+            case userMessage === '.😡':
+            case userMessage === '.🌝':
+            case userMessage === '.🤓':
+            case userMessage === '.🙂‍↔️':
+            case userMessage === '.😀':
+            case userMessage === '.😆':
                 await viewOnceCommand(sock, chatId, message);
                 break;
             case userMessage === '.clearsession' || userMessage === '.clearsesi':
