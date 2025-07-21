@@ -31,7 +31,7 @@ _Click the button below to fork  June Md repository to your GitHub account_
 _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bellow🥈_
 
 <div align="left">
-  <a href="https://mypair-bwpi.onrender.com/" target="_blank">
+  <a href="https://knight-bot-paircode.onrender.com/" target="_blank">
     <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Server%20One-green?style=for-the-badge" alt="PAIR CODE"/>
   </a>
 </div>
