@@ -6,7 +6,7 @@ function runtime(seconds) {
     const h = Math.floor((seconds % (3600 * 24)) / 3600);
     const m = Math.floor((seconds % 3600) / 60);
     const s = Math.floor(seconds % 60);
-    return `${d} days ${h} hrs ${m} mins ${s} sec.`;
+    return `${d} days ${h} hrs ${m} mins ${s} secs`;
 }
 
 async function aliveCommand(sock, chatId, message) {
