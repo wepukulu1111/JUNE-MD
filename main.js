@@ -106,7 +106,7 @@ global.ytch = "supremLord";
 const channelInfo = {
     contextInfo: {
         forwardingScore: 1,
-        isForwarded: true,
+        isForwarded: false,
         forwardedNewsletterMessageInfo: {
             newsletterJid: '@newsletter',
             newsletterName: '𝐉ᴜɴᴇ 𝐌ᴅ',
