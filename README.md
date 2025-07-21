@@ -31,14 +31,14 @@ _Click the button below to fork  June Md repository to your GitHub account_
 _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bellow🥈_
 
 <div align="left">
-  <a href="https://replit.com/@DGXeon/Xeon-PairCode?v=1" target="_blank">
-    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Replit-success?style=for-the-badge" alt="REPLIT"/>
+  <a href="https://mypair-bwpi.onrender.com/" target="_blank">
+    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Server%20One-green?style=for-the-badge" alt="PAIR CODE"/>
   </a>
 </div>
 
 <div align="left">
-  <a href="https://knight-bot-paircode.onrender.com" target="_blank">
-    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Easy%20Method-red?style=for-the-badge" alt="PAIRCODE"/>
+  <a href="https://mypair-bwpi.onrender.com/" target="_blank">
+    <img src="https://img.shields.io/badge/GET%20PAIR%20CODE-Server%20Two-darkgreen?style=for-the-badge" alt="PAIR CODE"/>
   </a>
 </div>
 
@@ -47,7 +47,7 @@ _Deploy the bot and easily connect it to your WhatsApp account by pair code. Bel
 _Download Bot Zip file From the button Bellow_
 <p align="left">
     <a href="https://codeload.github.com/vinpink2/JUNE-MD/zip/refs/heads/main" target="_blank">
-        <img alt="Download zip" src="https://img.shields.io/badge/Download-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=darkorange&color=darkblue"/>
+        <img alt="Download zip" src="https://img.shields.io/badge/Download Zip-100000?style=for-the-badge&logo=scan&logoColor=white&labelColor=darkorange&color=purple"/>
     </a>
 </p>
 
