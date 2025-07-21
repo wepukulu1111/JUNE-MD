@@ -132,7 +132,7 @@ async function handleDemotionEvent(sock, groupId, participants, author) {
         // Add delay to avoid rate limiting
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        const demotionMessage = `*『 GROUP DEMOTION 』*\n\n` +
+        const demotionMessage = `*/ GROUP DEMOTION /*\n\n` +
             `👤 *Demoted User${participants.length > 1 ? 's' : ''}:*\n` +
             `${demotedUsernames.map(name => `• ${name}`).join('\n')}\n\n` +
             `👑 *Demoted By:* ${demotedBy}\n\n` +
