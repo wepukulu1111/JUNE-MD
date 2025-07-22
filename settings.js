@@ -1,7 +1,7 @@
 const settings = {
   packname: '𝐉ᴜɴᴇ 𝐌ᴅ',
   author: 'supreme',
-  botName: "𝐉ᴜɴᴇ 𝐌ᴅ",
+  botName: "JUNE MD",
   botOwner: 'Suprem', // Your name
   ownerNumber: '254798570132', //Set your number here without + symbol.
   giphyApiKey: 'qnl7ssQChTdPjsKta2Ax2LMaGXz303tq',
