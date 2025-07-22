@@ -55,7 +55,7 @@ _Download Bot Zip file From the button Bellow_
 > 4:  **Deploy Now**
 
 _For further setup & guidance, click the button below🩹_
-[![Typing SVG](https://readme-typing-svg.demolab.com/?lines=Watch+The+Deployment+Tutorials+Bellow;For+Panel+Deployments)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com/?lines=Watch+The+Deployment+Tutorials;Bellow+For+FreePanel+Deployments)](https://git.io/typing-svg)
 
 > **Deploy Now on Below Panel**
 <div align="left">
@@ -63,7 +63,7 @@ _For further setup & guidance, click the button below🩹_
     <img src="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
   </a><br>
   <a href="https://bot-hosting.net/?aff=1068419752923508776">
-    <img src="https://img.shields.io/badge/Deploy on Panel-28a745?style=for-the-badge" alt="PANEL"/>
+    <img src="https://img.shields.io/badge/Bothosting Panel-28a745?style=for-the-badge" alt="PANEL"/>
   </a>
 </div>
 
@@ -72,7 +72,7 @@ _For further setup & guidance, click the button below🩹_
   <a href ="ytvd">
     <img src ="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt ="YouTube Link"/>
 <a href="https://dashboard.katabump.com/auth/login#adc462" target="_blank"><br>
-  <img src="https://img.shields.io/badge/Katabump-D6B7D6?style=for-the-badge&logo=server&logoColor=darkorange" alt="KATABUMP"/>
+  <img src="https://img.shields.io/badge/Katabump panel-D6B7D6?style=for-the-badge&logo=server&logoColor=darkorange" alt="KATABUMP"/>
 </a>
 </div>
 
