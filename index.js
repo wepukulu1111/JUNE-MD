@@ -245,8 +245,8 @@ async function startXeonBotInc() {
 ┏❐═⭔ *CONNECTED* ⭔═❐
 ┃⭔ BOT: JUNE MD
 ┃⭔ Time: ${new Date().toLocaleString()}
-┃⭔ Status:Online
-┃⭔ OWNER:${owner}
+┃⭔ Status: Connected✅
+┃⭔ OWNER: ${owner}
 ┗❐═⭔════════⭔═❐ `,
                 contextInfo: {
                     forwardingScore: 1,
@@ -260,13 +260,14 @@ async function startXeonBotInc() {
             });
 
             await delay(1999)
-            console.log(chalk.yellow(`\n\n    ${chalk.bold.blue(`[ ${global.botname || 'KNIGHT BOT'} ]`)}\n\n`))
+            console.log(chalk.yellow(`\n\n    ${chalk.bold.blue(`[ ${global.botname || 'JUNE MD'} ]`)}\n\n`))
+            
             console.log(chalk.cyan(`< ================================================== >`))
             console.log(chalk.magenta(`\n${global.themeemoji || '•'} YT CHANNEL: MR UNIQUE HACKER`))
-            console.log(chalk.magenta(`${global.themeemoji || '•'} GITHUB: mrunqiuehacker`))
+            console.log(chalk.magenta(`${global.themeemoji || '•'} GITHUB: Vinpink2`))
             console.log(chalk.magenta(`${global.themeemoji || '•'} WA NUMBER: ${owner}`))
-            console.log(chalk.magenta(`${global.themeemoji || '•'} CREDIT: MR UNIQUE HACKER`))
-            console.log(chalk.green(`${global.themeemoji || '•'} 🤖 Bot Connected Successfully! ✅`))
+            console.log(chalk.magenta(`${global.themeemoji || '•'} CREDIT: SUPREMELORD`))
+            console.log(chalk.green(`${global.themeemoji || '•'} 🤖 Bot Connected Successfully! ✅`))            
             console.log(chalk.cyan(`< ================================================== >`))
         }
         if (
