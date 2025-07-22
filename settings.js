@@ -1,6 +1,6 @@
 const settings = {
   packname: '𝐉ᴜɴᴇ 𝐌ᴅ',
-  author: 'supreme',
+  author: 'SUPREME',
   botName: "JUNE MD",
   botOwner: 'Suprem', // Your name
   ownerNumber: '254798570132', //Set your number here without + symbol.
