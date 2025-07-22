@@ -59,7 +59,7 @@ _For further setup & guidance, click the button below🩹_
 
 > **Deploy Now on Below Panel**
 <div align="left">
-  <a href="https://youtu.be/n1IvZvMgnHc?si=o-LyHDVT5Z5do_Kr">
+  <a href="https://youtu.be/aZMUw_YkcwI?si=xxHilfRhsPUM3-fW">
     <img src="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt="YouTube Link"/>
   </a><br>
   <a href="https://bot-hosting.net/?aff=1068419752923508776">
