@@ -69,7 +69,7 @@ _For further setup & guidance, click the button below🩹_
 
 > **Deploy On katabump panel**
 <div align="left">
-  <a href ="ytvd">
+  <a href ="https://youtu.be/prY8epRr3Z0?si=Qu3vEewMgcKWD43z">
     <img src ="https://img.shields.io/badge/TUTORIAL-dc3545?style=for-the-badge&logo=youtube" alt ="YouTube Link"/>
 <a href="https://dashboard.katabump.com/auth/login#adc462" target="_blank"><br>
   <img src="https://img.shields.io/badge/Katabump panel-D6B7D6?style=for-the-badge&logo=server&logoColor=darkorange" alt="KATABUMP"/>
